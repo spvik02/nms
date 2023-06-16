@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: ddl
+      author: victoria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: db/changelog/scripts/create-tables-news-comment.sql
