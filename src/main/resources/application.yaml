@@ -1,0 +1,59 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        search:
+          backend:
+            analysis:
+              configurer: ru.clevertec.nms.configuration.search.CustomLuceneAnalysisConfigurer
+            directory:
+              root: /data/index/default
+    show-sql: true
+  liquibase:
+    change-log: db/db.changelog-master.yaml
+  data:
+    web:
+      pageable:
+        default-page-size: 20
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/newsdbp
+    username: postgres
+    password: SUP3RpostU$3R
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+  jpa:
+    properties:
+      hibernate:
+        search:
+          backend:
+            directory:
+              need-reindex: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/newsdb
+    username: postgres
+    password: SUP3RpostU$3R
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: false
+  jpa:
+    properties:
+      hibernate:
+        search:
+          backend:
+            directory:
+              need-reindex: false
