@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.clevertec.nms.annotation.CacheAlong;
 import ru.clevertec.nms.model.dto.NewsDtoRequest;
 import ru.clevertec.nms.model.dto.NewsDtoResponse;
 import ru.clevertec.nms.model.entity.News;
@@ -25,6 +26,7 @@ public class NewsServiceImpl implements NewsService {
     private final NewsMapper mapper;
 
     @Transactional
+    @CacheAlong
     @Override
     public NewsDtoResponse save(NewsDtoRequest newsDtoRequest) {
         News news = mapper.dtoRequestToEntity(newsDtoRequest);
@@ -50,6 +52,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
 
+    @CacheAlong
     @Override
     public NewsDtoResponse findById(long id) {
         NewsDtoResponse newsDtoResponse = repository.findById(id)
@@ -60,6 +63,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Transactional
+    @CacheAlong
     @Override
     public NewsDtoResponse updateTittleAndTextById(long id, NewsDtoRequest newsDtoRequest) {
         News newsForUpdate = repository.findById(id)
@@ -78,6 +82,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Transactional
+    @CacheAlong
     @Override
     public void deleteById(long id) {
         repository.deleteById(id);

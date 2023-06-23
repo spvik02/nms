@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.clevertec.nms.annotation.CacheAlong;
 import ru.clevertec.nms.model.dto.CommentDtoRequest;
 import ru.clevertec.nms.model.dto.CommentDtoResponse;
 import ru.clevertec.nms.model.entity.Comment;
@@ -28,6 +29,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Transactional
+    @CacheAlong
     @Override
     public CommentDtoResponse save(CommentDtoRequest commentDtoRequest) {
 
@@ -50,6 +52,7 @@ public class CommentServiceImpl implements CommentService {
         return commentList.stream().map(commentMapper::entityToDtoResponse).toList();
     }
 
+    @CacheAlong
     @Override
     public CommentDtoResponse findById(long id) {
         CommentDtoResponse commentDtoResponse = commentRepository.findById(id)
@@ -74,6 +77,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Transactional
+    @CacheAlong
     @Override
     public CommentDtoResponse updateTextById(long id, CommentDtoRequest commentDtoRequest) {
         Comment commentForUpdate = commentRepository.findById(id)
@@ -89,6 +93,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Transactional
+    @CacheAlong
     @Override
     public void deleteById(long id) {
         commentRepository.deleteById(id);
