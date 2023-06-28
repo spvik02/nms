@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.clevertec.nms.annotation.Log;
 import ru.clevertec.nms.model.dto.CommentDtoRequest;
 import ru.clevertec.nms.model.dto.CommentDtoResponse;
 import ru.clevertec.nms.model.entity.Comment;
@@ -43,6 +44,7 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.entityToDtoResponse(savedComment);
     }
 
+    @Log
     @Override
     public List<CommentDtoResponse> findAll(Pageable pageable) {
         List<Comment> commentList = commentRepository.findAll(pageable).getContent();

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.clevertec.nms.annotation.Log;
 import ru.clevertec.nms.model.dto.CommentDtoRequest;
 import ru.clevertec.nms.model.dto.CommentDtoResponse;
 import ru.clevertec.nms.service.CommentService;
@@ -21,6 +22,7 @@ import ru.clevertec.nms.service.CommentService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Log
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/comments")

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Transactional
 @RequiredArgsConstructor
 public class BuildSearchIndexService implements ApplicationListener<ApplicationReadyEvent> {
+    //EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
 
     @PersistenceContext
     private final EntityManager entityManager;
