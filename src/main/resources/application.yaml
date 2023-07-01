@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   jpa:
     properties:
       hibernate:
@@ -20,29 +20,29 @@ spring:
         default-page-size: 20
 application:
   cache:
-#    algorithm: LRU
-#    capacity: 2
+    algorithm: LRU
+    capacity: 2
+server:
+  port: 8181
+
 ---
+
 spring:
   config:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:postgresql://localhost:5432/newsdbp
-    username: postgres
-    password: SUP3RpostU$3R
+    url: jdbc:postgresql://db:5432/newsdbp
+    username: newsdbp
+    password: compose-postgres
     driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: true
-  jpa:
-    properties:
-      hibernate:
-        search:
-          backend:
-            directory:
-              need-reindex: true
+application:
+  need-reindex: true
 
 ---
+
 spring:
   config:
     activate:
@@ -54,10 +54,5 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: false
-  jpa:
-    properties:
-      hibernate:
-        search:
-          backend:
-            directory:
-              need-reindex: false
+application:
+  need-reindex: false

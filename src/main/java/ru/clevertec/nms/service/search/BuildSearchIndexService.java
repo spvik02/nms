@@ -20,7 +20,7 @@ public class BuildSearchIndexService implements ApplicationListener<ApplicationR
     @PersistenceContext
     private final EntityManager entityManager;
 
-    @Value("${spring.jpa.properties.hibernate.search.backend.directory.need-reindex}")
+    @Value("${application.need-reindex}")
     boolean isNeedIndexing;
 
     @Override
