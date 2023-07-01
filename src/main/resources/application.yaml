@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: dev
   jpa:
     properties:
       hibernate:
@@ -25,6 +25,12 @@ application:
 server:
   port: 8181
 
+logging:
+  level:
+    root: info
+    org.hibernate: off
+    org.springframework.web: off
+    ru.clevertec.nms.aop.logging.ControllerLayerLogAspect: debug
 ---
 
 spring:

@@ -1,6 +1,7 @@
 package ru.clevertec.nms.service;
 
 import org.springframework.data.domain.Pageable;
+import ru.clevertec.nms.annotation.Log;
 import ru.clevertec.nms.model.dto.CommentDtoRequest;
 import ru.clevertec.nms.model.dto.CommentDtoResponse;
 
