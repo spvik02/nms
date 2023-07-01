@@ -1,6 +1,8 @@
 package ru.clevertec.nms.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +55,7 @@ public class NewsServiceImpl implements NewsService {
 
 
     @CacheAlong
+    @Cacheable(value = "news")
     @Override
     public NewsDtoResponse findById(long id) {
         NewsDtoResponse newsDtoResponse = repository.findById(id)
@@ -63,6 +66,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Transactional
+    @CacheEvict(value = "news", key = "#id")
     @CacheAlong
     @Override
     public NewsDtoResponse updateTittleAndTextById(long id, NewsDtoRequest newsDtoRequest) {
@@ -82,6 +86,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Transactional
+    @CacheEvict(value = "news", key = "#id")
     @CacheAlong
     @Override
     public void deleteById(long id) {

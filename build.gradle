@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.hibernate.search:hibernate-search-mapper-orm-orm6:6.1.7.Final'

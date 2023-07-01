@@ -2,11 +2,13 @@ package ru.clevertec.nms.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import ru.clevertec.nms.cache.Cache;
 import ru.clevertec.nms.cache.impl.CacheFactoryImpl;
 import ru.clevertec.nms.model.dto.CommentDtoResponse;
 import ru.clevertec.nms.model.dto.NewsDtoResponse;
 
+@Profile("cache")
 @Configuration
 public class CacheConfig {
 
