@@ -1,6 +1,9 @@
 package ru.clevertec.nms.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +56,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @CacheAlong
+    @Cacheable(value = "comments")
     @Override
     public CommentDtoResponse findById(long id) {
         CommentDtoResponse commentDtoResponse = commentRepository.findById(id)
@@ -77,6 +81,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Transactional
+    @CacheEvict(value = "comments", key = "#id")
     @CacheAlong
     @Override
     public CommentDtoResponse updateTextById(long id, CommentDtoRequest commentDtoRequest) {
@@ -93,6 +98,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Transactional
+    @CacheEvict(value = "comments", key = "#id")
     @CacheAlong
     @Override
     public void deleteById(long id) {
