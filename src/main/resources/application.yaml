@@ -27,6 +27,7 @@ logging:
     org.hibernate: off
     org.springframework.web: off
     ru.clevertec.nms.aop.logging.ControllerLayerLogAspect: debug
+    ru.clevertec.nms.controller: debug
 ---
 
 spring:
