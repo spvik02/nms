@@ -11,6 +11,9 @@ import ru.clevertec.nms.cache.Cache;
 import ru.clevertec.nms.model.dto.CommentDtoResponse;
 import ru.clevertec.nms.util.CacheUtils;
 
+/**
+ * AOP for work with Comment cache
+ */
 @Profile("cache")
 @Aspect
 @Component
@@ -27,11 +30,24 @@ public class CommentCacheAspect {
     private void commentServicePointCut() {
     }
 
+    /**
+     * Advice processing the get Comment operation. If comment is in cache it will get it from cache.
+     * If comment isn't in cache it will proceed initial operation and add data to cache.
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("annotatedMethod() && commentServicePointCut() && execution(* findById(..))")
     public Object cacheGetById(ProceedingJoinPoint joinPoint) throws Throwable {
         return CacheUtils.processCacheGetById(joinPoint, commentCache);
     }
 
+    /**
+     * Advice processing save and update Comment operations. Update comment and add it to cache
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("annotatedMethod() && " +
             "commentServicePointCut() && " +
             "(execution(* save(..)) || execution(* update*(..)))")
@@ -42,6 +58,12 @@ public class CommentCacheAspect {
         return proceeded;
     }
 
+    /**
+     * Advice processing delete Comment operation. Deletes comment and deletes it from cache
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("annotatedMethod() && commentServicePointCut() && execution(* deleteById(..))")
     public Object cacheDelete(ProceedingJoinPoint joinPoint) throws Throwable {
         CacheUtils.processCacheDelete(joinPoint, commentCache);

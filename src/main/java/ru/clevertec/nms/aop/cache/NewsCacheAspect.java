@@ -11,6 +11,9 @@ import ru.clevertec.nms.cache.Cache;
 import ru.clevertec.nms.model.dto.NewsDtoResponse;
 import ru.clevertec.nms.util.CacheUtils;
 
+/**
+ * AOP for work with News cache
+ */
 @Profile("cache")
 @Aspect
 @Component
@@ -27,11 +30,24 @@ public class NewsCacheAspect {
     private void newsServicePointCut() {
     }
 
+    /**
+     * Advice processing the get News operation. If News is in cache it will get it from cache.
+     * If News isn't in cache it will proceed initial operation and add data to cache.
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("annotatedMethod() && newsServicePointCut() && execution(* findById(..))")
     public Object cacheGetById(ProceedingJoinPoint joinPoint) throws Throwable {
         return CacheUtils.processCacheGetById(joinPoint, newsCache);
     }
 
+    /**
+     * Advice processing save and update News operations. Update News and add it to cache
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("annotatedMethod() && newsServicePointCut() && (execution(* save(..)) || execution(* update*(..)))")
     public Object cachePost(ProceedingJoinPoint joinPoint) throws Throwable {
         NewsDtoResponse proceeded = (NewsDtoResponse) joinPoint.proceed(joinPoint.getArgs());
@@ -40,6 +56,12 @@ public class NewsCacheAspect {
         return proceeded;
     }
 
+    /**
+     * Advice processing delete News operation. Deletes News and deletes it from cache
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("annotatedMethod() && newsServicePointCut() && execution(* deleteById(..))")
     public Object cacheDelete(ProceedingJoinPoint joinPoint) throws Throwable {
         CacheUtils.processCacheDelete(joinPoint, newsCache);

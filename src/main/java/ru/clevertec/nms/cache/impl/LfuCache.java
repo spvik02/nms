@@ -1,7 +1,5 @@
 package ru.clevertec.nms.cache.impl;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import ru.clevertec.nms.cache.Cache;
 
 import java.util.HashMap;
@@ -10,8 +8,6 @@ import java.util.LinkedHashSet;
 /**
  * LFU cache discards the least frequently used item when the cache is full to add a new item which is not in the cash.
  */
-//@Component
-//@RequiredArgsConstructor
 public class LfuCache<K, V> implements Cache<K, V> {
 
     /**

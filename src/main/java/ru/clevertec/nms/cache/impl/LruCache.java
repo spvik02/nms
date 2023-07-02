@@ -1,6 +1,5 @@
 package ru.clevertec.nms.cache.impl;
 
-import org.springframework.stereotype.Component;
 import ru.clevertec.nms.cache.Cache;
 
 import java.util.Iterator;
@@ -9,7 +8,6 @@ import java.util.LinkedHashMap;
 /**
  * LRU cache discards the least recently used item when the cache is full to add a new item which is not in the cash.
  */
-//@Component
 public class LruCache<K, V> implements Cache<K, V> {
 
     private int capacity;
