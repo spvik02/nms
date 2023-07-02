@@ -1,4 +1,4 @@
-package ru.clevertec.nms.service.search;
+package ru.clevertec.nms.handler;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -15,8 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Transactional
 @RequiredArgsConstructor
-public class BuildSearchIndexService implements ApplicationListener<ApplicationReadyEvent> {
-    //EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+public class BuildSearchIndexHandler implements ApplicationListener<ApplicationReadyEvent> {
 
     @PersistenceContext
     private final EntityManager entityManager;
