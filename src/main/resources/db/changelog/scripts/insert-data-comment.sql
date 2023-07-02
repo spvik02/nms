@@ -58,6 +58,36 @@ values (1, 1, '2022-01-01 08:00:00.309394',
         'GhibliGirl92'),
        (20, 2, '2022-02-18 13:00:00.309394',
         'These T-shirts are absolutely gorgeous! Studio Ghibli never ceases to amaze me with their stunning artwork. I want them all!',
-        'SpiritedAwayForever');
+        'SpiritedAwayForever'),
+
+       (21, 3, '2022-02-11 08:45:00.309394',
+        'finally',
+        'GhibliGirl92'),
+       (22, 3, '2022-02-22 08:45:00.309394',
+        'nice',
+        'GhibliGirl92'),
+       (23, 3, '2022-02-13 08:45:00.309394',
+        'I''m so happy to hear that',
+        'GhibliGirl92'),
+       (24, 3, '2022-02-14 08:45:00.309394',
+        'love it',
+        'Girl92'),
+       (25, 3, '2022-02-15 08:45:00.309394',
+        'love it too',
+        'GhibliG92'),
+       (26, 3, '2022-02-16 08:45:00.309394',
+        'nice',
+        'qwe'),
+       (27, 3, '2022-03-17 08:45:00.309394',
+        'happy 2',
+        'h2'),
+       (28, 3, '2022-02-18 08:45:00.309394',
+        'finally',
+        'f2ce'),
+       (29, 3, '2022-02-19 08:45:00.309394',
+        'I''m so happy to hear that the Ghibli Museum is finally',
+        'GhibliGirl92')
+;
+
 
 select setval('comment_id_seq', (select(max(id)) from comment));
