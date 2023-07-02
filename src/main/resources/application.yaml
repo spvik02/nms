@@ -62,6 +62,7 @@ spring:
     password: SUP3RpostU$3R
     driver-class-name: org.postgresql.Driver
   liquibase:
+    change-log: db/db.changelog-master.yaml
     enabled: false
 application:
   need-reindex: false
