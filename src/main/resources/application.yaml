@@ -1,6 +1,22 @@
 spring:
   profiles:
-    active: dev, cache
+    active: dev, basic, cache
+server:
+  port: 8181
+logging:
+  level:
+    root: info
+    org.hibernate: off
+    org.springframework.web: off
+    ru.clevertec.nms.aop.logging.ControllerLayerLogAspect: debug
+    ru.clevertec.nms.controller: debug
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: basic
   jpa:
     properties:
       hibernate:
@@ -12,22 +28,11 @@ spring:
             directory:
               root: /data/index/default
     show-sql: true
-  liquibase:
-    change-log: db/db.changelog-master.yaml
   data:
     web:
       pageable:
         default-page-size: 20
-server:
-  port: 8181
 
-logging:
-  level:
-    root: info
-    org.hibernate: off
-    org.springframework.web: off
-    ru.clevertec.nms.aop.logging.ControllerLayerLogAspect: debug
-    ru.clevertec.nms.controller: debug
 ---
 
 spring:
@@ -40,6 +45,7 @@ spring:
     password: compose-postgres
     driver-class-name: org.postgresql.Driver
   liquibase:
+    change-log: db/db.changelog-master.yaml
     enabled: true
 application:
   need-reindex: true
