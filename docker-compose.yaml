@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - "8181:8181"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/newsdbp
+      SPRING_DATASOURCE_USERNAME: newsdbp
+      SPRING_DATASOURCE_PASSWORD: compose-postgres
+  db:
+    image: postgres:alpine
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: newsdbp
+      POSTGRES_USER: newsdbp
+      POSTGRES_PASSWORD: compose-postgres
+  redis:
+    image: redis:7.2-rc2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertNews
+      author: victoria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: db/changelog/scripts/insert-data-news-t.sql
+  - changeSet:
+      id: insertComments
+      author: victoria
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: db/changelog/scripts/insert-data-comment-t.sql
