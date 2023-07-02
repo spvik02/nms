@@ -1,8 +1,6 @@
 spring:
   profiles:
     active: dev, basic, cache
-server:
-  port: 8181
 logging:
   level:
     root: info
@@ -49,6 +47,8 @@ spring:
     enabled: true
 application:
   need-reindex: true
+server:
+  port: 8181
 
 ---
 
